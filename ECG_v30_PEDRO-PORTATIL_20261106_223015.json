@@ -1,0 +1,1142 @@
+﻿{
+    "SchemaVersion":  "3.0",
+    "DiagnosticEngine":  "ECG-Universal",
+    "DiagnosticEngineVersion":  "3.0.0",
+    "Metadata":  {
+                     "ComputerName":  "PEDRO-PORTATIL",
+                     "Timestamp":  "2026-11-06T22:29:22.1194168+00:00",
+                     "IssueReported":  "lento",
+                     "IssueProfiles":  [
+                                           "Performance"
+                                       ],
+                     "FocusCategories":  [
+                                             "Hardware",
+                                             "Memory",
+                                             "Storage"
+                                         ],
+                     "RanAsAdmin":  true,
+                     "DeepIntegrity":  false,
+                     "ExtendedMode":  true,
+                     "EventWindowDays":  30,
+                     "PingCount":  20,
+                     "ConfidenceNote":  "Confidence = constante heuristica atribuida manualmente, nao uma medicao.",
+                     "DurationSeconds":  53.56
+                 },
+    "HealthScore":  {
+                        "Overall":  34,
+                        "Hardware":  87,
+                        "Storage":  62,
+                        "Memory":  89,
+                        "Windows":  57,
+                        "Network":  100
+                    },
+    "Facts":  {
+                  "Context":  {
+                                  "IsVirtualMachine":  false,
+                                  "IsLaptop":  true,
+                                  "ChassisTypes":  [
+                                                       10
+                                                   ],
+                                  "BatteryPresent":  true,
+                                  "FastStartupEnabled":  false,
+                                  "IssueProfiles":  [
+                                                        "Performance"
+                                                    ]
+                              },
+                  "System":  {
+                                 "ComputerName":  "PEDRO-PORTATIL",
+                                 "Manufacturer":  "ASUSTeK COMPUTER INC.",
+                                 "Model":  "VivoBook_ASUSLaptop X531FL_S531FL",
+                                 "OSCaption":  "Microsoft Windows 10 Pro",
+                                 "OSBuild":  "19045",
+                                 "UptimeDays":  0.35,
+                                 "RebootPending":  false,
+                                 "RebootReasons":  "",
+                                 "CPUModel":  "Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz",
+                                 "LogicalCores":  8,
+                                 "BaseClockMHz":  1992,
+                                 "ThermalZone_ACPI_C":  38,
+                                 "PowerPlan":  "Elevado desempenho",
+                                 "BIOSVersion":  "X531FL.304",
+                                 "BIOSDate":  "2021-01-14"
+                             },
+                  "Battery":  {
+                                  "Present":  true,
+                                  "ChargePercent":  100,
+                                  "Status":  2,
+                                  "DesignCapacityMWh":  null,
+                                  "FullChargeCapacityMWh":  null,
+                                  "WearPct":  null,
+                                  "CycleCount":  293
+                              },
+                  "Gpu":  [
+                              {
+                                  "Name":  "Intel(R) UHD Graphics 620",
+                                  "DriverVersion":  "27.20.100.8681",
+                                  "DriverDate":  "2020-09-05",
+                                  "DriverAgeDays":  2254,
+                                  "Status":  "OK",
+                                  "ConfigErrorCode":  0,
+                                  "RefreshRate":  60
+                              },
+                              {
+                                  "Name":  "NVIDIA GeForce MX250",
+                                  "DriverVersion":  "32.0.15.8228",
+                                  "DriverDate":  "2026-01-20",
+                                  "DriverAgeDays":  291,
+                                  "Status":  "OK",
+                                  "ConfigErrorCode":  0,
+                                  "RefreshRate":  null
+                              }
+                          ],
+                  "Memory":  {
+                                 "TotalRAM_MB":  16235,
+                                 "AvailableRAM_MB":  7244,
+                                 "AvailableRAM_Pct":  44.6,
+                                 "AvailableSource":  "PerfOS_Memory.AvailableMBytes",
+                                 "UsedRAM_Pct":  55.4,
+                                 "Committed_MB":  12694,
+                                 "CommitLimit_MB":  38763,
+                                 "CommitUtilization":  32.7,
+                                 "PoolPaged_MB":  725,
+                                 "PoolNonPaged_MB":  818,
+                                 "PageFileActive":  true,
+                                 "PageFileAllocated_MB":  22528,
+                                 "PageFileCurrent_MB":  324,
+                                 "PageFilePeak_MB":  396,
+                                 "PageFilePeakPct":  1.8,
+                                 "WSL_Docker_RAM_MB":  0
+                             },
+                  "TopProcesses":  {
+                                       "ByPrivateMemory":  [
+                                                               {
+                                                                   "Id":  3524,
+                                                                   "Name":  "chrome",
+                                                                   "PrivateMB":  1600,
+                                                                   "Handles":  520
+                                                               },
+                                                               {
+                                                                   "Id":  1408,
+                                                                   "Name":  "dwm",
+                                                                   "PrivateMB":  1452,
+                                                                   "Handles":  1508
+                                                               },
+                                                               {
+                                                                   "Id":  20000,
+                                                                   "Name":  "vmmem",
+                                                                   "PrivateMB":  879,
+                                                                   "Handles":  0
+                                                               },
+                                                               {
+                                                                   "Id":  7832,
+                                                                   "Name":  "MsMpEng",
+                                                                   "PrivateMB":  349,
+                                                                   "Handles":  782
+                                                               },
+                                                               {
+                                                                   "Id":  18920,
+                                                                   "Name":  "powershell",
+                                                                   "PrivateMB":  277,
+                                                                   "Handles":  2022
+                                                               }
+                                                           ],
+                                       "ByHandles":  [
+                                                         {
+                                                             "Id":  4,
+                                                             "Name":  "System",
+                                                             "Handles":  5285,
+                                                             "PrivateMB":  0
+                                                         },
+                                                         {
+                                                             "Id":  12840,
+                                                             "Name":  "explorer",
+                                                             "Handles":  4023,
+                                                             "PrivateMB":  208
+                                                         },
+                                                         {
+                                                             "Id":  4444,
+                                                             "Name":  "chrome",
+                                                             "Handles":  2612,
+                                                             "PrivateMB":  254
+                                                         },
+                                                         {
+                                                             "Id":  16836,
+                                                             "Name":  "SearchApp",
+                                                             "Handles":  2125,
+                                                             "PrivateMB":  201
+                                                         },
+                                                         {
+                                                             "Id":  18920,
+                                                             "Name":  "powershell",
+                                                             "Handles":  2022,
+                                                             "PrivateMB":  277
+                                                         }
+                                                     ]
+                                   },
+                  "PhysicalMemory":  {
+                                         "ModuleCount":  2,
+                                         "SlotCount":  2,
+                                         "MismatchedCapacity":  false,
+                                         "MismatchedSpeed":  false,
+                                         "SingleChannelPossible":  false,
+                                         "XmpPossiblyOff":  true,
+                                         "Modules":  [
+                                                         {
+                                                             "Locator":  "ChannelA-DIMM0",
+                                                             "Bank":  "BANK 0",
+                                                             "CapacityGB":  8,
+                                                             "SpeedMHz":  2667,
+                                                             "ConfiguredMHz":  2400,
+                                                             "Manufacturer":  "SK Hynix",
+                                                             "PartNumber":  "HMAA1GS6CMR6N-VK"
+                                                         },
+                                                         {
+                                                             "Locator":  "ChannelB-DIMM0",
+                                                             "Bank":  "BANK 2",
+                                                             "CapacityGB":  8,
+                                                             "SpeedMHz":  2667,
+                                                             "ConfiguredMHz":  2400,
+                                                             "Manufacturer":  "SK Hynix",
+                                                             "PartNumber":  "HMA81GS6JJR8N-VK"
+                                                         }
+                                                     ]
+                                     },
+                  "PhysicalDisks":  [
+                                        {
+                                            "DeviceId":  "1",
+                                            "FriendlyName":  "Msft Virtual Disk",
+                                            "MediaType":  "SSD",
+                                            "BusType":  "File Backed Virtual",
+                                            "HealthStatus":  "Healthy",
+                                            "OperationalStatus":  "OK",
+                                            "SizeGB":  8,
+                                            "TemperatureC":  0,
+                                            "MaxTemperatureC":  null,
+                                            "WearPercentage":  0,
+                                            "PowerOnHours":  null,
+                                            "StartStopCycleCount":  null,
+                                            "StartStopCycleCountMax":  null,
+                                            "LoadUnloadCycleCount":  null,
+                                            "LoadUnloadCycleCountMax":  null,
+                                            "ReadErrorsTotal":  null,
+                                            "WriteErrorsTotal":  null,
+                                            "ReadErrorsUncorrected":  null,
+                                            "WriteErrorsUncorrected":  null,
+                                            "ReadLatencyMaxMs":  147,
+                                            "WriteLatencyMaxMs":  null
+                                        },
+                                        {
+                                            "DeviceId":  "0",
+                                            "FriendlyName":  "INTEL SSDPEKNW010T8",
+                                            "MediaType":  "SSD",
+                                            "BusType":  "RAID",
+                                            "HealthStatus":  "Healthy",
+                                            "OperationalStatus":  "OK",
+                                            "SizeGB":  953.9,
+                                            "TemperatureC":  1,
+                                            "MaxTemperatureC":  null,
+                                            "WearPercentage":  0,
+                                            "PowerOnHours":  null,
+                                            "StartStopCycleCount":  null,
+                                            "StartStopCycleCountMax":  null,
+                                            "LoadUnloadCycleCount":  null,
+                                            "LoadUnloadCycleCountMax":  null,
+                                            "ReadErrorsTotal":  null,
+                                            "WriteErrorsTotal":  null,
+                                            "ReadErrorsUncorrected":  null,
+                                            "WriteErrorsUncorrected":  null,
+                                            "ReadLatencyMaxMs":  899,
+                                            "WriteLatencyMaxMs":  1153
+                                        },
+                                        {
+                                            "DeviceId":  "2",
+                                            "FriendlyName":  "Generic Flash Disk",
+                                            "MediaType":  "Unspecified",
+                                            "BusType":  "USB",
+                                            "HealthStatus":  "Healthy",
+                                            "OperationalStatus":  "OK",
+                                            "SizeGB":  29.1,
+                                            "TemperatureC":  0,
+                                            "MaxTemperatureC":  null,
+                                            "WearPercentage":  0,
+                                            "PowerOnHours":  null,
+                                            "StartStopCycleCount":  null,
+                                            "StartStopCycleCountMax":  null,
+                                            "LoadUnloadCycleCount":  null,
+                                            "LoadUnloadCycleCountMax":  null,
+                                            "ReadErrorsTotal":  null,
+                                            "WriteErrorsTotal":  null,
+                                            "ReadErrorsUncorrected":  null,
+                                            "WriteErrorsUncorrected":  null,
+                                            "ReadLatencyMaxMs":  59,
+                                            "WriteLatencyMaxMs":  2684
+                                        }
+                                    ],
+                  "SmartPredictFailure":  {
+                                              "Count":  0,
+                                              "Instances":  [
+
+                                                            ]
+                                          },
+                  "Volumes":  [
+                                  {
+                                      "DriveLetter":  "E",
+                                      "FileSystemLabel":  "DRIVERS",
+                                      "FileSystem":  "NTFS",
+                                      "SizeGB":  4,
+                                      "FreeGB":  0.7,
+                                      "FreePct":  17.3,
+                                      "DirtyBit":  false
+                                  },
+                                  {
+                                      "DriveLetter":  "C",
+                                      "FileSystemLabel":  "Windows10",
+                                      "FileSystem":  "NTFS",
+                                      "SizeGB":  599.4,
+                                      "FreeGB":  72.3,
+                                      "FreePct":  12.1,
+                                      "DirtyBit":  false
+                                  },
+                                  {
+                                      "DriveLetter":  "D",
+                                      "FileSystemLabel":  "DATA",
+                                      "FileSystem":  "NTFS",
+                                      "SizeGB":  333.2,
+                                      "FreeGB":  111.4,
+                                      "FreePct":  33.4,
+                                      "DirtyBit":  false
+                                  }
+                              ],
+                  "Trim":  {
+                               "NtfsDisableDeleteNotify":  "0"
+                           },
+                  "AggregatedEvents":  {
+                                           "PhysicalStorageErrors":  [
+
+                                                                     ],
+                                           "PhysicalStorageWarnings":  [
+
+                                                                       ],
+                                           "StorageTrendIncrease":  0,
+                                           "LogicalFilesystemErrors":  [
+                                                                           {
+                                                                               "Key":  "Ntfs|50",
+                                                                               "Count":  3,
+                                                                               "Description":  "delayed write falhou",
+                                                                               "LastSeen":  "2026-11-06 17:57"
+                                                                           }
+                                                                       ],
+                                           "WHEA_Fatal":  [
+
+                                                          ],
+                                           "WHEA_Corrected":  [
+
+                                                              ],
+                                           "WheaTrendIncrease":  0,
+                                           "KernelPower41":  {
+                                                                 "TotalCount":  2,
+                                                                 "CrashesWithBugcheck":  0,
+                                                                 "DirtyPowerLosses":  2
+                                                             },
+                                           "CpuThrottlingEvents":  22,
+                                           "DisplayTDR_Count":  0,
+                                           "ResourceExhaustion_Count":  0,
+                                           "MemoryDiagnostics":  {
+                                                                     "Runs90d":  0,
+                                                                     "RunsWithErrors":  0,
+                                                                     "LastEvent":  null
+                                                                 },
+                                           "VSS":  2,
+                                           "AudioCrash":  0,
+                                           "USB_BTH":  0
+                                       },
+                  "CrashDumps":  {
+                                     "MinidumpCount":  0,
+                                     "LatestMinidumpDate":  "Nenhum",
+                                     "Dumps":  [
+
+                                               ],
+                                     "BugcheckAnalysis":  [
+
+                                                          ],
+                                     "SystemStabilityIndex":  8.4,
+                                     "DumpSettings":  {
+                                                          "DebugInfoType":  7,
+                                                          "AutoReboot":  true
+                                                      }
+                                 },
+                  "AppCrashes":  {
+                                     "Crashes1000":  2,
+                                     "Hangs1002":  1,
+                                     "TrendIncrease":  0,
+                                     "DistinctCrashingApps":  2,
+                                     "TopApps":  [
+                                                     {
+                                                         "App":  "spnsrvnt.exe",
+                                                         "Crashes":  1,
+                                                         "TopFaultingModule":  "WS2_32.dll",
+                                                         "Hangs":  0
+                                                     },
+                                                     {
+                                                         "App":  "HDDScan.exe",
+                                                         "Crashes":  1,
+                                                         "TopFaultingModule":  "HDDScan.exe",
+                                                         "Hangs":  0
+                                                     }
+                                                 ],
+                                     "ReliabilityTop":  [
+                                                            {
+                                                                "Product":  "msedge.exe",
+                                                                "Failures":  1
+                                                            },
+                                                            {
+                                                                "Product":  "spnsrvnt.exe",
+                                                                "Failures":  1
+                                                            },
+                                                            {
+                                                                "Product":  "HDDScan.exe",
+                                                                "Failures":  1
+                                                            }
+                                                        ],
+                                     "ReliabilityRecordsTotal":  71
+                                 },
+                  "NetworkIntegrity":  {
+                                           "NCSI_ConnectTest_OK":  true,
+                                           "SuspiciousHostsEntries":  [
+
+                                                                      ],
+                                           "ProxyEnabled":  false
+                                       },
+                  "Network":  {
+                                  "AdapterActive":  "Wi-Fi",
+                                  "IsVirtualAdapter":  false,
+                                  "PhysicalMedia":  "Native 802.11",
+                                  "LinkSpeedMbps":  650,
+                                  "GatewayIP":  "192.168.1.1",
+                                  "GatewayPing":  true,
+                                  "DNSResolution":  true,
+                                  "InternetTcp443":  true,
+                                  "IPv4":  [
+                                               "192.168.1.78"
+                                           ],
+                                  "IsApipa":  false,
+                                  "DnsServers":  [
+                                                     "192.168.1.1"
+                                                 ],
+                                  "DnsServerTests":  [
+                                                         {
+                                                             "Server":  "192.168.1.1",
+                                                             "Ok":  true,
+                                                             "Ms":  6
+                                                         }
+                                                     ],
+                                  "Latency":  {
+                                                  "Gateway":  {
+                                                                  "Sent":  20,
+                                                                  "Received":  20,
+                                                                  "LossPct":  0,
+                                                                  "MinMs":  1,
+                                                                  "AvgMs":  1.6,
+                                                                  "MaxMs":  4,
+                                                                  "JitterMs":  0.7
+                                                              },
+                                                  "Internet":  {
+                                                                   "Sent":  20,
+                                                                   "Received":  20,
+                                                                   "LossPct":  0,
+                                                                   "MinMs":  6,
+                                                                   "AvgMs":  6.9,
+                                                                   "MaxMs":  9,
+                                                                   "JitterMs":  1.3
+                                                               }
+                                              },
+                                  "Statistics":  {
+                                                     "ReceivedUnicastPackets":  70324,
+                                                     "SentUnicastPackets":  36477,
+                                                     "ReceivedDiscardedPackets":  0,
+                                                     "ReceivedPacketErrors":  0,
+                                                     "OutboundDiscardedPackets":  0,
+                                                     "OutboundPacketErrors":  0
+                                                 },
+                                  "WiFiDetails":  {
+                                                      "SSID":  "Vodafone-5G",
+                                                      "SignalPct":  83,
+                                                      "RadioType":  "802.11ac",
+                                                      "Channel":  "36",
+                                                      "Band":  "5 GHz (inferido)",
+                                                      "ReceiveMbps":  "650",
+                                                      "TransmitMbps":  "650"
+                                                  }
+                              },
+                  "FaultedServices":  [
+
+                                      ],
+                  "ServiceControlManagerEvents":  [
+                                                      {
+                                                          "Event":  "7000|CxUIUSvc",
+                                                          "Count":  18
+                                                      },
+                                                      {
+                                                          "Event":  "7009|CxUIUSvc",
+                                                          "Count":  18
+                                                      },
+                                                      {
+                                                          "Event":  "7000|DFWSIDService",
+                                                          "Count":  18
+                                                      },
+                                                      {
+                                                          "Event":  "7000|Serviço Google Update (gupdate)",
+                                                          "Count":  18
+                                                      },
+                                                      {
+                                                          "Event":  "7009|Serviço Google Update (gupdate)",
+                                                          "Count":  18
+                                                      },
+                                                      {
+                                                          "Event":  "7000|TunMirror",
+                                                          "Count":  18
+                                                      },
+                                                      {
+                                                          "Event":  "7031|VMware Workstation Server",
+                                                          "Count":  15
+                                                      },
+                                                      {
+                                                          "Event":  "7009|Intel® PROSet/Wireless Service",
+                                                          "Count":  2
+                                                      }
+                                                  ],
+                  "Updates":  {
+                                  "FailureEvents30d":  3,
+                                  "FailureIds":  [
+                                                     {
+                                                         "Id":  "20",
+                                                         "Count":  3
+                                                     }
+                                                 ],
+                                  "LastSuccessfulInstall":  "2026-09-15",
+                                  "DaysSinceLastInstall":  53,
+                                  "LastInstallSource":  "Get-HotFix"
+                              },
+                  "RecentHotfixes":  [
+                                         {
+                                             "HotFixID":  "KB5126256",
+                                             "Description":  "Security Update",
+                                             "InstalledOn":  {
+                                                                 "value":  "\/Date(1789426800000)\/",
+                                                                 "DateTime":  "15 de setembro de 2026 00:00:00"
+                                                             }
+                                         },
+                                         {
+                                             "HotFixID":  "KB5072653",
+                                             "Description":  "Security Update",
+                                             "InstalledOn":  {
+                                                                 "value":  "\/Date(1763510400000)\/",
+                                                                 "DateTime":  "19 de novembro de 2025 00:00:00"
+                                                             }
+                                         },
+                                         {
+                                             "HotFixID":  "KB5071959",
+                                             "Description":  "Security Update",
+                                             "InstalledOn":  {
+                                                                 "value":  "\/Date(1763251200000)\/",
+                                                                 "DateTime":  "16 de novembro de 2025 00:00:00"
+                                                             }
+                                         }
+                                     ],
+                  "OsSupport":  {
+                                    "Label":  "Windows 10",
+                                    "Edition":  "Home/Pro",
+                                    "EndOfSupport":  "2025-10-14",
+                                    "DaysToEnd":  -389,
+                                    "OutOfSupport":  true
+                                },
+                  "ComponentStoreHealth":  "Saudavel",
+                  "StartupItems":  [
+                                       {
+                                           "Name":  "GoogleDriveFS",
+                                           "Executable":  "C:\\Program Files\\Google\\Drive File Stream\\133.0.2.0\\GoogleDriveFS.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT AUTHORITY\\SYSTEM"
+                                       },
+                                       {
+                                           "Name":  "OneDriveSetup",
+                                           "Executable":  "C:\\Windows\\SysWOW64\\OneDriveSetup.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT AUTHORITY\\SERVIÇO LOCAL"
+                                       },
+                                       {
+                                           "Name":  "GoogleDriveFS",
+                                           "Executable":  "C:\\Program Files\\Google\\Drive File Stream\\133.0.2.0\\GoogleDriveFS.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT AUTHORITY\\SERVIÇO LOCAL"
+                                       },
+                                       {
+                                           "Name":  "OneDriveSetup",
+                                           "Executable":  "C:\\Windows\\SysWOW64\\OneDriveSetup.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-20\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT AUTHORITY\\Serviço de rede"
+                                       },
+                                       {
+                                           "Name":  "GoogleDriveFS",
+                                           "Executable":  "C:\\Program Files\\Google\\Drive File Stream\\133.0.2.0\\GoogleDriveFS.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-20\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT AUTHORITY\\Serviço de rede"
+                                       },
+                                       {
+                                           "Name":  "Ollama",
+                                           "Executable":  "Ollama.lnk",
+                                           "Exists":  false,
+                                           "Signature":  "N/A",
+                                           "Signer":  null,
+                                           "SuspiciousPath":  false,
+                                           "Location":  "Startup",
+                                           "User":  "PEDRO-PORTATIL\\Pedro"
+                                       },
+                                       {
+                                           "Name":  "com.squirrel.Teams.Teams",
+                                           "Executable":  "C:\\Users\\Pedro\\AppData\\Local\\Microsoft\\Teams\\Update.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Microsoft 3rd Party Application Component, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                           "SuspiciousPath":  true,
+                                           "Location":  "HKU\\S-1-5-21-4089028160-1100043178-1674405556-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "PEDRO-PORTATIL\\Pedro"
+                                       },
+                                       {
+                                           "Name":  "GoogleDriveFS",
+                                           "Executable":  "C:\\Program Files\\Google\\Drive File Stream\\133.0.2.0\\GoogleDriveFS.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-21-4089028160-1100043178-1674405556-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "PEDRO-PORTATIL\\Pedro"
+                                       },
+                                       {
+                                           "Name":  "Adobe Acrobat Synchronizer",
+                                           "Executable":  "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AdobeCollabSync.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Adobe Inc., OU=Acrobat DC, O=Adobe Inc., L=San Jose, S=ca, C=US, SERIALNUMBER=2748129, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-21-4089028160-1100043178-1674405556-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "PEDRO-PORTATIL\\Pedro"
+                                       },
+                                       {
+                                           "Name":  "electron.app.LM Studio",
+                                           "Executable":  "C:\\Users\\Pedro\\AppData\\Local\\Programs\\LM Studio\\LM Studio.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Element Labs Inc., O=Element Labs Inc., L=Brooklyn, S=New York, C=US, SERIALNUMBER=6659187, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  true,
+                                           "Location":  "HKU\\S-1-5-21-4089028160-1100043178-1674405556-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "PEDRO-PORTATIL\\Pedro"
+                                       },
+                                       {
+                                           "Name":  "Docker Desktop",
+                                           "Executable":  "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Docker Inc, O=Docker Inc, L=Palo Alto, S=California, C=US, SERIALNUMBER=4817464, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-21-4089028160-1100043178-1674405556-1001\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "PEDRO-PORTATIL\\Pedro"
+                                       },
+                                       {
+                                           "Name":  "OneDriveSetup",
+                                           "Executable":  "C:\\Windows\\SysWOW64\\OneDriveSetup.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-80-1985561900-798682989-2213159822-1904180398-3434236965\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT SERVICE\\SQLTELEMETRY$SQLEXPRESS"
+                                       },
+                                       {
+                                           "Name":  "GoogleDriveFS",
+                                           "Executable":  "C:\\Program Files\\Google\\Drive File Stream\\133.0.2.0\\GoogleDriveFS.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\S-1-5-80-1985561900-798682989-2213159822-1904180398-3434236965\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "NT SERVICE\\SQLTELEMETRY$SQLEXPRESS"
+                                       },
+                                       {
+                                           "Name":  "GoogleDriveFS",
+                                           "Executable":  "C:\\Program Files\\Google\\Drive File Stream\\133.0.2.0\\GoogleDriveFS.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKU\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  ".DEFAULT"
+                                       },
+                                       {
+                                           "Name":  "Update UWP App",
+                                           "Executable":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "Common Startup",
+                                           "User":  "Public"
+                                       },
+                                       {
+                                           "Name":  "SecurityHealth",
+                                           "Executable":  "C:\\WINDOWS\\system32\\SecurityHealthSystray.exe",
+                                           "Exists":  true,
+                                           "Signature":  "Valid",
+                                           "Signer":  "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+                                           "SuspiciousPath":  false,
+                                           "Location":  "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+                                           "User":  "Public"
+                                       }
+                                   ],
+                  "Drivers":  {
+                                  "Total":  212,
+                                  "UnsignedCount":  1,
+                                  "Unsigned":  [
+                                                   {
+                                                       "Device":  "Virtual USB MultiKey",
+                                                       "Class":  "SYSTEM",
+                                                       "Inf":  "oem22.inf"
+                                                   }
+                                               ],
+                                  "OldCriticalDrivers":  [
+                                                             {
+                                                                 "Device":  "Microsoft Kernel Debug Network Adapter",
+                                                                 "Class":  "NET",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.1"
+                                                             },
+                                                             {
+                                                                 "Device":  "Bluetooth Device (RFCOMM Protocol TDI)",
+                                                                 "Class":  "BLUETOOTH",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.5848"
+                                                             },
+                                                             {
+                                                                 "Device":  "Microsoft Wi-Fi Direct Virtual Adapter",
+                                                                 "Class":  "NET",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.1"
+                                                             },
+                                                             {
+                                                                 "Device":  "Microsoft Storage Spaces Controller",
+                                                                 "Class":  "SCSIADAPTER",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.4355"
+                                                             },
+                                                             {
+                                                                 "Device":  "Microsoft Wi-Fi Direct Virtual Adapter",
+                                                                 "Class":  "NET",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.1"
+                                                             },
+                                                             {
+                                                                 "Device":  "Microsoft Bluetooth LE Enumerator",
+                                                                 "Class":  "BLUETOOTH",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.3636"
+                                                             },
+                                                             {
+                                                                 "Device":  "Device Identification Service",
+                                                                 "Class":  "BLUETOOTH",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.5848"
+                                                             },
+                                                             {
+                                                                 "Device":  "Microsoft Bluetooth Enumerator",
+                                                                 "Class":  "BLUETOOTH",
+                                                                 "Date":  "2006-06-21",
+                                                                 "Version":  "10.0.19041.5848"
+                                                             }
+                                                         ]
+                              },
+                  "PnPErrors":  [
+
+                                ],
+                  "PnPErrorCount":  0,
+                  "Boot":  {
+                               "DaysAnalyzed":  14,
+                               "BootsAnalyzed":  6,
+                               "AvgBootSeconds":  94.3,
+                               "LastBootSeconds":  83.1,
+                               "SlowBoots":  1,
+                               "FastStartupEnabled":  false,
+                               "DegradingItems":  [
+                                                      {
+                                                          "Item":  "101|MsMpEng.exe",
+                                                          "Count":  3
+                                                      },
+                                                      {
+                                                          "Item":  "101|GoogleDriveFS.exe",
+                                                          "Count":  3
+                                                      },
+                                                      {
+                                                          "Item":  "101|MpDefenderCoreService.exe",
+                                                          "Count":  3
+                                                      },
+                                                      {
+                                                          "Item":  "101|multipassd.exe",
+                                                          "Count":  2
+                                                      },
+                                                      {
+                                                          "Item":  "101|AsusSplendid.exe",
+                                                          "Count":  2
+                                                      }
+                                                  ]
+                           },
+                  "Security":  {
+                                   "Defender":  {
+                                                    "ServiceEnabled":  true,
+                                                    "RealTimeProtection":  false,
+                                                    "SignatureAgeDays":  0,
+                                                    "QuickScanAgeDays":  0,
+                                                    "FullScanAgeDays":  4294967295,
+                                                    "TamperProtected":  false
+                                                },
+                                   "ThirdPartyAV":  [
+                                                        {
+                                                            "Name":  "Windows Defender",
+                                                            "Enabled":  false,
+                                                            "UpToDate":  true,
+                                                            "Snoozed":  false
+                                                        }
+                                                    ],
+                                   "Firewall":  [
+                                                    {
+                                                        "Profile":  "Domain",
+                                                        "Enabled":  "False"
+                                                    },
+                                                    {
+                                                        "Profile":  "Private",
+                                                        "Enabled":  "False"
+                                                    },
+                                                    {
+                                                        "Profile":  "Public",
+                                                        "Enabled":  "True"
+                                                    }
+                                                ],
+                                   "BitLocker":  [
+                                                     {
+                                                         "Drive":  "C:",
+                                                         "Protected":  false
+                                                     },
+                                                     {
+                                                         "Drive":  "D:",
+                                                         "Protected":  false
+                                                     },
+                                                     {
+                                                         "Drive":  "E:",
+                                                         "Protected":  false
+                                                     },
+                                                     {
+                                                         "Drive":  "F:",
+                                                         "Protected":  false
+                                                     }
+                                                 ],
+                                   "Tpm":  {
+                                               "Present":  true,
+                                               "Ready":  true
+                                           },
+                                   "SecureBoot":  false,
+                                   "SuspiciousTasks":  [
+                                                           {
+                                                               "Name":  "cua-driver-serve",
+                                                               "Path":  "\\",
+                                                               "Action":  "powershell.exe",
+                                                               "Args":  "-NoProfile -WindowStyle Hidden -NonInteractive -Command \"Start-Process -FilePath \u0027C:\\Users\\Pedro\\AppData\\Local\\Programs\\Cua\\cua-driver\\bin\\cua-driver.exe\u0027 -ArgumentList \u0027serve\u0027 -WindowStyle Hidden -WorkingDirectory \u0027C:\\Users\\Pedro\u0027\""
+                                                           },
+                                                           {
+                                                               "Name":  "G2MUpdateTask-S-1-5-21-4089028160-1100043178-1674405556-1001",
+                                                               "Path":  "\\",
+                                                               "Action":  "C:\\Users\\Pedro\\AppData\\Local\\GoToMeeting\\19992\\g2mupdate.exe",
+                                                               "Args":  null
+                                                           },
+                                                           {
+                                                               "Name":  "G2MUploadTask-S-1-5-21-4089028160-1100043178-1674405556-1001",
+                                                               "Path":  "\\",
+                                                               "Action":  "C:\\Users\\Pedro\\AppData\\Local\\GoToMeeting\\19992\\g2mupload.exe",
+                                                               "Args":  null
+                                                           },
+                                                           {
+                                                               "Name":  "Windows Defender Cache Maintenance",
+                                                               "Path":  "\\Microsoft\\Windows\\Windows Defender\\",
+                                                               "Action":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26100.4-0\\MpCmdRun.exe",
+                                                               "Args":  "-IdleTask -TaskName WdCacheMaintenance"
+                                                           },
+                                                           {
+                                                               "Name":  "Windows Defender Cleanup",
+                                                               "Path":  "\\Microsoft\\Windows\\Windows Defender\\",
+                                                               "Action":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26100.4-0\\MpCmdRun.exe",
+                                                               "Args":  "-IdleTask -TaskName WdCleanup"
+                                                           },
+                                                           {
+                                                               "Name":  "Windows Defender Scheduled Scan",
+                                                               "Path":  "\\Microsoft\\Windows\\Windows Defender\\",
+                                                               "Action":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26100.4-0\\MpCmdRun.exe",
+                                                               "Args":  "Scan -ScheduleJob -ScanTrigger 55 -IdleScheduledJob"
+                                                           },
+                                                           {
+                                                               "Name":  "Windows Defender Verification",
+                                                               "Path":  "\\Microsoft\\Windows\\Windows Defender\\",
+                                                               "Action":  "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26100.4-0\\MpCmdRun.exe",
+                                                               "Args":  "-IdleTask -TaskName WdVerification"
+                                                           }
+                                                       ],
+                                   "LocalAdmins":  [
+                                                       "PEDRO-PORTATIL\\Administrador",
+                                                       "PEDRO-PORTATIL\\Pedro"
+                                                   ]
+                               },
+                  "CollectionErrors":  [
+                                           "EventLog[PhysicalStorage]: There is not an event provider on the localhost computer that matches \"iaStorA\".",
+                                           "Step[Rules.Performance]: Os tipos de argumentos não correspondem",
+                                           "Step[History]: Os tipos de argumentos não correspondem"
+                                       ]
+              },
+    "Findings":  [
+                     {
+                         "Category":  "Memory",
+                         "Severity":  "Warning",
+                         "Confidence":  0.85,
+                         "Finding":  "Consumo Excessivo de Memoria Nao Paginada (Pool Leak)",
+                         "Evidence":  "Pool Non-Paged consome 818 MB (normalmente \u003c 500 MB).",
+                         "RecommendedAction":  "Fuga num driver de kernel (NIC, AV, VPN). Usar o PoolMon.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Memory",
+                         "Severity":  "Info",
+                         "Confidence":  0.5,
+                         "Finding":  "RAM Abaixo da Velocidade Nominal",
+                         "Evidence":  "Velocidade inferior a 90% da nominal.",
+                         "RecommendedAction":  "Ativar XMP/EXPO na BIOS.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Hardware",
+                         "Severity":  "Warning",
+                         "Confidence":  0.7,
+                         "Finding":  "CPU Limitado pelo Firmware (Throttling)",
+                         "Evidence":  "22 evento(s) Kernel-Processor-Power 37.",
+                         "RecommendedAction":  "Verificar temperaturas e BIOS.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Hardware",
+                         "Severity":  "Warning",
+                         "Confidence":  0.7,
+                         "Finding":  "Desligamentos Abruptos / Perda de Energia",
+                         "Evidence":  "2 reinicios sem BugCheck.",
+                         "RecommendedAction":  "Testar PSU/bateria.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Storage",
+                         "Severity":  "Critical",
+                         "Confidence":  0.98,
+                         "Finding":  "Volume E: em Esgotamento Critico",
+                         "Evidence":  "Apenas 0.7 GB disponiveis.",
+                         "RecommendedAction":  "Libertar espaco.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Storage",
+                         "Severity":  "Warning",
+                         "Confidence":  0.85,
+                         "Finding":  "Volume C: com Espaco Reduzido",
+                         "Evidence":  "Apenas 12.1% de espaco livre.",
+                         "RecommendedAction":  "Limpeza de disco.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Storage",
+                         "Severity":  "Warning",
+                         "Confidence":  0.7,
+                         "Finding":  "Falhas nos Servicos de Shadow Copy (VSS)",
+                         "Evidence":  "2 evento(s) de erro.",
+                         "RecommendedAction":  "Verificar se as copias de seguranca estao a falhar e libertar espaco em disco.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Storage",
+                         "Severity":  "Warning",
+                         "Confidence":  0.8,
+                         "Finding":  "Erros Logicos no Sistema de Ficheiros (NTFS/volmgr)",
+                         "Evidence":  "Eventos: Ntfs|50 x3 (delayed write falhou).",
+                         "RecommendedAction":  "Agendar chkdsk.",
+                         "RelevantToIssue":  true
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Warning",
+                         "Confidence":  0.65,
+                         "Finding":  "Falhas Recorrentes de Servicos (SCM)",
+                         "Evidence":  "7000|CxUIUSvc x18; 7009|CxUIUSvc x18; 7000|DFWSIDService x18; 7000|Serviço Google Update (gupdate) x18; 7009|Serviço Google Update (gupdate) x18",
+                         "RecommendedAction":  "Investigar em services.msc.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Warning",
+                         "Confidence":  0.6,
+                         "Finding":  "Drivers Nao Assinados",
+                         "Evidence":  "1 driver(s).",
+                         "RecommendedAction":  "Substituir por assinados.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Warning",
+                         "Confidence":  0.7,
+                         "Finding":  "Falhas do Windows Update",
+                         "Evidence":  "3 evento(s) falhados.",
+                         "RecommendedAction":  "Correr Troubleshooting.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Warning",
+                         "Confidence":  0.8,
+                         "Finding":  "Versao do Windows Fora de Suporte",
+                         "Evidence":  "Windows 10 (Home/Pro).",
+                         "RecommendedAction":  "Atualizar o SO.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Critical",
+                         "Confidence":  0.85,
+                         "Finding":  "Sem Antivirus Ativo",
+                         "Evidence":  "Defender sem protecao em tempo real e de terceiros desativado.",
+                         "RecommendedAction":  "Ativar AV.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Warning",
+                         "Confidence":  0.7,
+                         "Finding":  "Firewall Desligada (Domain)",
+                         "Evidence":  "A firewall do windows esta desativada.",
+                         "RecommendedAction":  "Ativar ou confirmar substituto.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Windows",
+                         "Severity":  "Warning",
+                         "Confidence":  0.7,
+                         "Finding":  "Firewall Desligada (Private)",
+                         "Evidence":  "A firewall do windows esta desativada.",
+                         "RecommendedAction":  "Ativar ou confirmar substituto.",
+                         "RelevantToIssue":  false
+                     },
+                     {
+                         "Category":  "Security",
+                         "Severity":  "Warning",
+                         "Confidence":  0.85,
+                         "Finding":  "Tarefas Agendadas Suspeitas Detetadas",
+                         "Evidence":  "cua-driver-serve, G2MUpdateTask-S-1-5-21-4089028160-1100043178-1674405556-1001, G2MUploadTask-S-1-5-21-4089028160-1100043178-1674405556-1001",
+                         "RecommendedAction":  "Rever no Agendador de Tarefas entradas que executem scripts em pastas temporarias.",
+                         "RelevantToIssue":  false
+                     }
+                 ],
+    "RecommendedActions":  [
+                               "Fuga num driver de kernel (NIC, AV, VPN). Usar o PoolMon.",
+                               "Ativar XMP/EXPO na BIOS.",
+                               "Verificar temperaturas e BIOS.",
+                               "Testar PSU/bateria.",
+                               "Libertar espaco.",
+                               "Limpeza de disco.",
+                               "Verificar se as copias de seguranca estao a falhar e libertar espaco em disco.",
+                               "Agendar chkdsk.",
+                               "Investigar em services.msc.",
+                               "Substituir por assinados.",
+                               "Correr Troubleshooting.",
+                               "Atualizar o SO.",
+                               "Ativar AV.",
+                               "Ativar ou confirmar substituto.",
+                               "Rever no Agendador de Tarefas entradas que executem scripts em pastas temporarias."
+                           ],
+    "Suspects":  [
+                     {
+                         "Name":  "Seguranca/Malware",
+                         "Points":  4.5,
+                         "Reasons":  [
+                                         "Sem antivirus ativo",
+                                         "Tarefas agendadas anormais"
+                                     ]
+                     },
+                     {
+                         "Name":  "Armazenamento",
+                         "Points":  3,
+                         "Reasons":  [
+                                         "Erros NTFS/volmgr",
+                                         "Reinicios inesperados coexistem com sinais de armazenamento"
+                                     ]
+                     },
+                     {
+                         "Name":  "Drivers",
+                         "Points":  2.5,
+                         "Reasons":  [
+                                         "Fuga de Non-Paged Pool (818 MB)"
+                                     ]
+                     },
+                     {
+                         "Name":  "Alimentacao/PSU",
+                         "Points":  2.5,
+                         "Reasons":  [
+                                         "Desligamentos abruptos repetidos"
+                                     ]
+                     },
+                     {
+                         "Name":  "Arrefecimento",
+                         "Points":  2,
+                         "Reasons":  [
+                                         "Eventos de throttling (22)"
+                                     ]
+                     }
+                 ],
+    "PrimarySuspect":  {
+                           "Name":  "Seguranca/Malware",
+                           "Points":  4.5,
+                           "Reasons":  [
+                                           "Sem antivirus ativo",
+                                           "Tarefas agendadas anormais"
+                                       ]
+                       },
+    "Trend":  null,
+    "DataCoverage":  {
+                         "StepsTotal":  0,
+                         "StepsOk":  0,
+                         "StepsFailed":  0,
+                         "StepsSkipped":  0,
+                         "StepsTimeout":  0,
+                         "Percent":  0,
+                         "ConfidenceLevel":  "Baixa",
+                         "Note":  "A pontuacao so e totalmente fiavel com cobertura Alta (executar como administrador).",
+                         "Steps":  null
+                     }
+}
