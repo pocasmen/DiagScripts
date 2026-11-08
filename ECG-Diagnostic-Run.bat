@@ -7,7 +7,7 @@
 setlocal
 
 :: Verifica se PowerShell existe
-where powershell >nul 2>&1
+where powershell >nul 2>nul
 if %ERRORLEVEL% neq 0 (
     echo [ERRO] PowerShell nao encontrado no sistema!
     echo Este script requer PowerShell 5.1 ou superior.
