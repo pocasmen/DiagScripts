@@ -1,29 +1,20 @@
 @echo off
 :: ============================================
 :: ECG-Diagnostic Runner v3.1
-:: Executar script de diagnostico com permissoes
+:: Executar script de diagnostico
 :: ============================================
 
 setlocal
 
-:: Verifica se PowerShell existe
-where powershell >nul 2>nul
+:: Verifica se PowerShell existe (metodo robusto)
+powershell -Command "exit 0" >nul 2>nul
 if %ERRORLEVEL% neq 0 (
-    echo [ERRO] PowerShell nao encontrado no sistema!
-    echo Este script requer PowerShell 5.1 ou superior.
-    pause
-    exit /b 1
-)
-
-:: Verifica versao do PowerShell
-for /f "tokens=3" %%v in ('powershell -Command "$PSVersionTable.PSVersion.ToString()" 2^>nul') do set "PSVERSION=%%v"
-
-:: Extrai versao major
-for /f "tokens=1 delims=." %%m in ("%PSVERSION%") do set "PSMAJOR=%%m"
-
-if %PSMAJOR% LSS 5 (
-    echo [ERRO] PowerShell versao %PSVERSION% detectada.
-    echo Este script requer PowerShell 5.1 ou superior.
+    echo [ERRO] PowerShell nao esta instalado no sistema!
+    echo Este script requer o PowerShell da Microsoft.
+    echo.
+    echo Para instalar:
+    echo  - Windows 7/10/11: Ative o PowerShell nas funcionalidades do Windows
+    echo  - Ou baixe em: https://aka.ms/install-powershell
     pause
     exit /b 1
 )
@@ -45,10 +36,17 @@ echo ============================================
 echo  ECG-Diagnostic v3.1 - Iniciando...
 echo ============================================
 echo.
-echo A abrir PowerShell com permissoes de administrador...
-echo.
 
-:: Executa em novo processo com admin
-powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%"' -Verb RunAs"
+:: Verifica se ja estamos como admin (para evitar loop)
+net session >nul 2>nul
+if %ERRORLEVEL% equ 0 (
+    echo Executando com permissoes de administrador...
+    echo.
+    powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%"
+) else (
+    echo A abrir PowerShell com permissoes de administrador...
+    echo.
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%"' -Verb RunAs"
+)
 
 endlocal
