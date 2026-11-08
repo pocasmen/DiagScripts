@@ -717,7 +717,15 @@ function Test-DriverDates {
             try {
                 $drivers = Get-WmiObject -Class Win32_Driver -ErrorAction Stop
             } catch {
-                throw "Nao foi possivel obter lista de drivers: $_"
+                try {
+                    $drivers = Get-CimInstance -ClassName Win32_PnPSignedDriver -ErrorAction Stop
+                } catch {
+                    try {
+                        $drivers = Get-WmiObject -Class Win32_PnPSignedDriver -ErrorAction Stop
+                    } catch {
+                        throw "Nao foi possivel obter lista de drivers: $_"
+                    }
+                }
             }
         }
         
