@@ -747,7 +747,7 @@ function Test-DriverDates {
             Write-DiagLog -Message "Encontrados $($oldDrivers.Count) drivers antigos" -Level "Warning" -Component "Drivers"
 
             foreach ($driver in $oldDrivers) {
-                $severity = if ($driver.AgeDays -gt 365) { "Critical" } elseif ($driver.AgeDays -gt 180) { "Warning" } else { "Info" }
+                $severity = "Warning"
                 $penalty = if ($driver.AgeDays -gt 365) { 0.9 } elseif ($driver.AgeDays -gt 180) { 0.75 } else { 0.5 }
 
                 Add-Finding "Drivers" $severity $penalty `
