@@ -42,11 +42,15 @@ net session >nul 2>nul
 if %ERRORLEVEL% equ 0 (
     echo Executando com permissoes de administrador...
     echo.
-    powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%"
+    echo A janela ficara aberta no final. Pressione CTRL+C para fechar.
+    echo.
+    powershell -NoProfile -ExecutionPolicy Bypass -NoExit -File "%SCRIPT_PATH%"
 ) else (
     echo A abrir PowerShell com permissoes de administrador...
     echo.
-    powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_PATH%"' -Verb RunAs"
+    echo A janela ficara aberta no final. Pressione CTRL+C para fechar.
+    echo.
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "Start-Process powershell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -NoExit -File "%SCRIPT_PATH%"' -Verb RunAs"
 )
 
 endlocal
