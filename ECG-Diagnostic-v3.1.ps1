@@ -762,9 +762,9 @@ function Test-DriverDates {
             $driverListText = ($driverList -join "; ")
             
             # Gerar apenas UM finding com todos os drivers
-            Add-Finding "Drivers" "Warning" 0.8 \
-                "Drivers desatualizados ($($oldDrivers.Count) encontrados)" \
-                "Drivers com mais de $($MaxAgeDays/30) meses: $driverListText" \
+            Add-Finding "Drivers" "Warning" 0.8 `
+                "Drivers desatualizados ($($oldDrivers.Count) encontrados)" `
+                "Drivers com mais de $($MaxAgeDays/30) meses: $driverListText" `
                 "Atualizar drivers para melhorar estabilidade e seguranca. Visite os sites dos fabricantes." 2
 
             # Adicionar suspects individuais
@@ -1527,9 +1527,9 @@ Invoke-Step "Battery" {
         $severity = if ($b.WearPct -ge 40) { "Critical" } elseif ($b.WearPct -ge 30) { "Warning" } else { "Info" }
         $penalty = if ($b.WearPct -ge 40) { 0.9 } elseif ($b.WearPct -ge 30) { 0.75 } else { 0.5 }
         
-        Add-Finding "Hardware" $severity $penalty \
-            "Desgaste da bateria: $($b.WearPct)%" \
-            "Bateria com $($healthPct)% de saude (desgaste de $($b.WearPct)%). Capacidade atual: $($b.FullChargeCapacityMWh)mWh, Original: $($b.DesignCapacityMWh)mWh." \
+        Add-Finding "Hardware" $severity $penalty `
+            "Desgaste da bateria: $($b.WearPct)%" `
+            "Bateria com $($healthPct)% de saude (desgaste de $($b.WearPct)%). Capacidade atual: $($b.FullChargeCapacityMWh)mWh, Original: $($b.DesignCapacityMWh)mWh." `
             "Considerar substituir a bateria. Baterias com mais de 30% de desgaste tem autonomia significativamente reduzida." 2
         
         Add-Suspect "Hardware" $penalty "Bateria com desgaste de $($b.WearPct)%"
