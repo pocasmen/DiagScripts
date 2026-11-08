@@ -740,9 +740,9 @@ function Test-DriverDates {
                 $severity = if ($driver.AgeDays -gt 365) { "Critical" } elseif ($driver.AgeDays -gt 180) { "Warning" } else { "Info" }
                 $penalty = if ($driver.AgeDays -gt 365) { 0.9 } elseif ($driver.AgeDays -gt 180) { 0.75 } else { 0.5 }
 
-                Add-Finding "Drivers" $severity $penalty \
-                    "Driver antigo: $($driver.DisplayName)" \
-                    "Driver '$($driver.DisplayName)' (v$($driver.DriverVersion)) tem $($driver.AgeYears) anos (instalado em $($driver.DriverDate.ToString('yyyy-MM-dd'))). Caminho: $($driver.DriverPath)" \
+                Add-Finding "Drivers" $severity $penalty `
+                    "Driver antigo: $($driver.DisplayName)" `
+                    "Driver '$($driver.DisplayName)' (v$($driver.DriverVersion)) tem $($driver.AgeYears) anos (instalado em $($driver.DriverDate.ToString('yyyy-MM-dd'))). Caminho: $($driver.DriverPath)" `
                     "Atualizar driver para melhorar estabilidade e seguranca. Visite o site do fabricante." 2
 
                 Add-Suspect "Drivers" $penalty "Driver $($driver.DisplayName) com $($driver.AgeDays) dias"
@@ -755,8 +755,8 @@ function Test-DriverDates {
 
     } catch {
         Write-DiagLog -Message "Erro ao verificar drivers: $($_.Exception.Message)" -Level "Error" -Component "Drivers"
-        Add-Finding "Drivers" "Error" 0.5 "Falha na verificacao de drivers" \
-            "Nao foi possivel verificar as datas dos drivers: $($_.Exception.Message)" \
+        Add-Finding "Drivers" "Error" 0.5 "Falha na verificacao de drivers" `
+            "Nao foi possivel verificar as datas dos drivers: $($_.Exception.Message)" `
             "Verifique permissoes de administrador e servico WMI" 2
         return $null
     }
