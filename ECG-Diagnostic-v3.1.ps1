@@ -2304,6 +2304,7 @@ Invoke-Step "Rules.Performance" -Internal {
         Add-Finding "Memory" $sev 0.7 "Paginacao Intensiva (hard faults)" "Pages Input/s medio $PgAvg com $availPct% de RAM disponivel." "Expandir RAM ou fechar aplicacoes." 2
         Add-Suspect "RAM insuficiente" 2.5 "Paginacao intensiva ($PgAvg pag/s)"
     }
+    return $null
 }
 
 # --------------------------------------------------------------------------
@@ -2770,12 +2771,13 @@ Invoke-Step "History" -Internal {
             'Score'      { if ($r.Delta -le -15) { Add-Finding "Windows" "Info" 0.5 "HealthScore Piorou Bastante" "De $($r.Previous) para $($r.Current)." "Rever os findings novos." 1 } }
         }
     }
+    return $null
 }
 
 # --------------------------------------------------------------------------
 # Cobertura de dados
 # --------------------------------------------------------------------------
-$cov = @($script:Coverage)
+$cov = if ($script:Coverage) { @($script:Coverage) } else { @() }
 $covOk = @($cov | Where-Object { $_.Status -eq 'Ok' }).Count
 $covFail = @($cov | Where-Object { $_.Status -eq 'Failed' }).Count
 $covSkip = @($cov | Where-Object { $_.Status -eq 'Skipped' }).Count
