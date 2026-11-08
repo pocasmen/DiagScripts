@@ -77,6 +77,74 @@ param (
 )
 
 # ==========================================================================
+# MENU INTERATIVO (apenas se nao tiver parametros)
+# ==========================================================================
+if (-not $PSBoundParameters.ContainsKey('Issue') -and
+    -not $PSBoundParameters.ContainsKey('DeepIntegrity') -and
+    -not $PSBoundParameters.ContainsKey('Extended') -and
+    -not $PSBoundParameters.ContainsKey('OutputDir') -and
+    -not $PSBoundParameters.ContainsKey('EventDays') -and
+    -not $PSBoundParameters.ContainsKey('PingCount') -and
+    -not $PSBoundParameters.ContainsKey('CompareWith') -and
+    -not $PSBoundParameters.ContainsKey('NoHistory') -and
+    -not $PSBoundParameters.ContainsKey('Silent') -and
+    -not $PSBoundParameters.ContainsKey('LogPath') -and
+    -not $PSBoundParameters.ContainsKey('WmiTimeout') -and
+    -not $PSBoundParameters.ContainsKey('ExportHtml')) {
+
+    Clear-Host
+    Write-Host "=============================================" -ForegroundColor Cyan
+    Write-Host "  ECG-Diagnostic v3.1 - Menu Interativo" -ForegroundColor Cyan
+    Write-Host "=============================================" -ForegroundColor Cyan
+    Write-Host ""
+    Write-Host "Parametros disponiveis:" -ForegroundColor Yellow
+    Write-Host "  -Issue          : Sintoma reportado (ex: 'PC lento')" -ForegroundColor Gray
+    Write-Host "  -Silent         : Modo silencioso (sem output no console)" -ForegroundColor Gray
+    Write-Host "  -LogPath        : Caminho para o ficheiro de log" -ForegroundColor Gray
+    Write-Host "  -WmiTimeout     : Timeout para chamadas WMI (segundos)" -ForegroundColor Gray
+    Write-Host "  -ExportHtml     : Exportar relatorio em HTML" -ForegroundColor Gray
+    Write-Host "  -DeepIntegrity  : Executar SFC /verifyonly (requer admin)" -ForegroundColor Gray
+    Write-Host "  -Extended       : 3 janelas de amostragem CPU/disco/memoria" -ForegroundColor Gray
+    Write-Host "  -OutputDir      : Pasta de saida para os ficheiros" -ForegroundColor Gray
+    Write-Host "  -EventDays      : Janela de analise de eventos (1-90 dias)" -ForegroundColor Gray
+    Write-Host ""
+    Write-Host "Pressione ENTER para continuar com o menu..." -ForegroundColor Gray
+    Read-Host
+    
+    # Pergunta 1: Issue
+    $Issue = Read-Host "Sintoma reportado (Enter para pular)"
+    
+    # Pergunta 2: Modo Silencioso
+    $silentAnswer = Read-Host "Executar em modo silencioso (sem output no console)? (S/N)"
+    if ($silentAnswer -eq 'S' -or $silentAnswer -eq 's') { $Silent = $true }
+    
+    # Pergunta 3: Caminho do Log
+    $logPathAnswer = Read-Host "Caminho para o ficheiro de log (Enter para default)"
+    if (-not [string]::IsNullOrEmpty($logPathAnswer)) { $LogPath = $logPathAnswer }
+    
+    # Pergunta 4: Timeout WMI
+    $timeoutAnswer = Read-Host "Timeout para chamadas WMI em segundos (Enter para default: 60)"
+    if (-not [string]::IsNullOrEmpty($timeoutAnswer) -and $timeoutAnswer -match '^\d+$') { $WmiTimeout = [int]$timeoutAnswer }
+    
+    # Pergunta 5: Exportar HTML
+    $exportHtmlAnswer = Read-Host "Exportar relatorio para HTML? (S/N)"
+    if ($exportHtmlAnswer -eq 'S' -or $exportHtmlAnswer -eq 's') { $ExportHtml = $true }
+    
+    # Pergunta 6: DeepIntegrity
+    $deepIntegrityAnswer = Read-Host "Executar verificacao de integridade do sistema (SFC)? (S/N)"
+    if ($deepIntegrityAnswer -eq 'S' -or $deepIntegrityAnswer -eq 's') { $DeepIntegrity = $true }
+    
+    # Pergunta 7: Extended
+    $extendedAnswer = Read-Host "Modo estendido (3 janelas de amostragem)? (S/N)"
+    if ($extendedAnswer -eq 'S' -or $extendedAnswer -eq 's') { $Extended = $true }
+    
+    Write-Host ""
+    Write-Host "Iniciando diagnostico com as opcoes selecionadas..." -ForegroundColor Green
+    Write-Host ""
+    Start-Sleep -Seconds 2
+}
+
+# ==========================================================================
 # VERIFICACAO DE REQUISITOS
 # ==========================================================================
 
