@@ -699,6 +699,70 @@ function Get-OsSupportInfo {
 }
 
 # ==========================================================================
+# VERIFICACAO DE DRIVERS ANTIGOS
+# ==========================================================================
+
+function Test-DriverDates {
+    param(
+        [int]$MaxAgeDays = 180
+    )
+
+    Write-DiagLog -Message "Verificando drivers antigos (limite: $MaxAgeDays dias)" -Level "Info" -Component "Drivers"
+
+    try {
+        $drivers = Get-CimInstance -ClassName Win32_Driver -ErrorAction Stop
+        $oldDrivers = @()
+        $now = Get-Date
+
+        foreach ($driver in $drivers) {
+            if ($driver.DriverDate) {
+                $age = ($now - $driver.DriverDate).Days
+                if ($age -gt $MaxAgeDays) {
+                    $oldDrivers += [pscustomobject]@{
+                        Name = $driver.Name
+                        DisplayName = $driver.DisplayName
+                        DriverVersion = $driver.DriverVersion
+                        DriverDate = $driver.DriverDate
+                        AgeDays = $age
+                        AgeYears = [math]::Round($age / 365, 1)
+                        Description = $driver.Description
+                        InfName = $driver.InfName
+                        DriverPath = $driver.Path
+                    }
+                }
+            }
+        }
+
+        if ($oldDrivers.Count -gt 0) {
+            Write-DiagLog -Message "Encontrados $($oldDrivers.Count) drivers antigos" -Level "Warning" -Component "Drivers"
+
+            foreach ($driver in $oldDrivers) {
+                $severity = if ($driver.AgeDays -gt 365) { "Critical" } elseif ($driver.AgeDays -gt 180) { "Warning" } else { "Info" }
+                $penalty = if ($driver.AgeDays -gt 365) { 0.9 } elseif ($driver.AgeDays -gt 180) { 0.75 } else { 0.5 }
+
+                Add-Finding "Drivers" $severity $penalty \
+                    "Driver antigo: $($driver.DisplayName)" \
+                    "Driver '$($driver.DisplayName)' (v$($driver.DriverVersion)) tem $($driver.AgeYears) anos (instalado em $($driver.DriverDate.ToString('yyyy-MM-dd'))). Caminho: $($driver.DriverPath)" \
+                    "Atualizar driver para melhorar estabilidade e seguranca. Visite o site do fabricante." 2
+
+                Add-Suspect "Drivers" $penalty "Driver $($driver.DisplayName) com $($driver.AgeDays) dias"
+            }
+        } else {
+            Write-DiagLog -Message "Nenhum driver antigo encontrado (limite: $MaxAgeDays dias)" -Level "Info" -Component "Drivers"
+        }
+
+        return $oldDrivers
+
+    } catch {
+        Write-DiagLog -Message "Erro ao verificar drivers: $($_.Exception.Message)" -Level "Error" -Component "Drivers"
+        Add-Finding "Drivers" "Error" 0.5 "Falha na verificacao de drivers" \
+            "Nao foi possivel verificar as datas dos drivers: $($_.Exception.Message)" \
+            "Verifique permissoes de administrador e servico WMI" 2
+        return $null
+    }
+}
+
+# ==========================================================================
 # FUNCAO DE EXPORTACAO HTML
 # ==========================================================================
 
@@ -1911,6 +1975,10 @@ if ($null -ne $Report.Facts.Updates -and -not $Report.Facts.Updates.LastSuccessf
 Invoke-Step "OsSupport" {
     $info = Get-OsSupportInfo -Build ([int]$OS.BuildNumber) -Caption "$($OS.Caption)" -Table $OsSupportTable -Now (Get-Date)
     $Report.Facts.OsSupport = if ($info) { $info } else { [pscustomobject]@{ Label = 'N/A'; OutOfSupport = $false } }
+}
+
+Invoke-Step "DriverDates" {
+    $Report.Facts.OldDrivers = Test-DriverDates -MaxAgeDays 180
 }
 
 $DismHealth = "Nao verificado"
