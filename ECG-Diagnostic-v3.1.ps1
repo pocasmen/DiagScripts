@@ -1486,6 +1486,20 @@ Invoke-Step "Battery" {
         $b.DesignCapacityMWh = [int]$stat.DesignedCapacity
         if ($b.DesignCapacityMWh -gt 0) {
             $b.WearPct = [math]::Max(0, [math]::Round((1 - ($b.FullChargeCapacityMWh / $b.DesignCapacityMWh)) * 100, 1))
+            
+            # Gerar alerta se desgaste for significativo
+            if ($b.WearPct -ge 20) {
+                $healthPct = 100 - $b.WearPct
+                $severity = if ($b.WearPct -ge 40) { "Critical" } elseif ($b.WearPct -ge 30) { "Warning" } else { "Info" }
+                $penalty = if ($b.WearPct -ge 40) { 0.9 } elseif ($b.WearPct -ge 30) { 0.75 } else { 0.5 }
+                
+                Add-Finding "Hardware" $severity $penalty `
+                    "Desgaste da bateria: $($b.WearPct)%" `
+                    "Bateria com $($healthPct)% de saude (desgaste de $($b.WearPct)%). Capacidade atual: $($b.FullChargeCapacityMWh)mWh, Original: $($b.DesignCapacityMWh)mWh." `
+                    "Considerar substituir a bateria. Baterias com mais de 30% de desgaste tem autonomia significativamente reduzida." 2
+                
+                Add-Suspect "Hardware" $penalty "Bateria com desgaste de $($b.WearPct)%"
+            }
         }
     } catch { }
     try {
