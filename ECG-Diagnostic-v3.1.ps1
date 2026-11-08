@@ -755,20 +755,40 @@ function Test-DriverDates {
         if ($oldDrivers.Count -gt 0) {
             Write-DiagLog -Message "Encontrados $($oldDrivers.Count) drivers antigos" -Level "Warning" -Component "Drivers"
 
-            # Criar lista formatada de drivers
-            $driverList = $oldDrivers | ForEach-Object { 
-                "$($_.DisplayName) (v$($_.DriverVersion)) - $($_.AgeYears) anos (instalado em $($_.DriverDate.ToString('yyyy-MM-dd')))"
+            # Filtrar drivers do sistema Microsoft (nao precisam ser atualizados manualmente)
+            $nonMicrosoftDrivers = $oldDrivers | Where-Object { 
+                $_.DisplayName -and $_.DisplayName -notmatch '^Microsoft' -and 
+                $_.DisplayName -notmatch 'Windows' -and
+                $_.Description -notmatch 'Microsoft' -and
+                $_.Description -notmatch 'Windows'
             }
-            $driverListText = ($driverList -join "; ")
             
-            # Gerar apenas UM finding com todos os drivers
-            Add-Finding "Drivers" "Warning" 0.8 `
-                "Drivers desatualizados ($($oldDrivers.Count) encontrados)" `
-                "Drivers com mais de $($MaxAgeDays/30) meses: $driverListText" `
-                "Atualizar drivers para melhorar estabilidade e seguranca. Visite os sites dos fabricantes." 2
+            # Limitar a 20 drivers para nao sobrecarregar o relatorio
+            $topDrivers = $nonMicrosoftDrivers | Sort-Object AgeDays -Descending | Select-Object -First 20
+            
+            if ($topDrivers.Count -gt 0) {
+                # Criar lista formatada com nome e data
+                $driverList = $topDrivers | ForEach-Object { 
+                    $name = if ($_.DisplayName -and $_.DisplayName -ne '') { $_.DisplayName } else { $_.Name }
+                    $dateStr = if ($_.DriverDate) { $_.DriverDate.ToString('yyyy-MM-dd') } else { 'N/A' }
+                    "$name (v$($_.DriverVersion)) - $dateStr"
+                }
+                $driverListText = ($driverList -join "; ")
+                
+                # Adicionar nota se houver muitos drivers
+                $note = if ($oldDrivers.Count -gt 20) { 
+                    " (mostrando top 20 de $($oldDrivers.Count) - $($oldDrivers.Count - $topDrivers.Count) drivers do sistema Microsoft filtrados)"
+                } else { "" }
+                
+                # Gerar apenas UM finding com os drivers
+                Add-Finding "Drivers" "Warning" 0.8 `
+                    "Drivers desatualizados ($($oldDrivers.Count) encontrados)$note" `
+                    "Drivers com mais de $($MaxAgeDays/30) meses: $driverListText" `
+                    "Atualizar drivers para melhorar estabilidade e seguranca. Visite os sites dos fabricantes." 2
+            }
 
-            # Adicionar suspects individuais
-            foreach ($driver in $oldDrivers) {
+            # Adicionar suspects individuais (apenas para os top drivers)
+            foreach ($driver in $topDrivers) {
                 $penalty = if ($driver.AgeDays -gt 365) { 0.9 } elseif ($driver.AgeDays -gt 180) { 0.75 } else { 0.5 }
                 Add-Suspect "Drivers" $penalty "Driver $($driver.DisplayName) com $($driver.AgeDays) dias"
             }
