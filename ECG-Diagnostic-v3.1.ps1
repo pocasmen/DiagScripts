@@ -731,9 +731,10 @@ function Test-DriverDates {
         
         $oldDrivers = @()
         $now = Get-Date
+        $minValidYear = 2000  # Ignorar drivers com data antes de 2000 (datas invalidas)
 
         foreach ($driver in $drivers) {
-            if ($driver.DriverDate) {
+            if ($driver.DriverDate -and $driver.DriverDate.Year -ge $minValidYear) {
                 $age = ($now - $driver.DriverDate).Days
                 if ($age -gt $MaxAgeDays) {
                     $oldDrivers += [pscustomobject]@{
@@ -754,15 +755,21 @@ function Test-DriverDates {
         if ($oldDrivers.Count -gt 0) {
             Write-DiagLog -Message "Encontrados $($oldDrivers.Count) drivers antigos" -Level "Warning" -Component "Drivers"
 
+            # Criar lista formatada de drivers
+            $driverList = $oldDrivers | ForEach-Object { 
+                "$($_.DisplayName) (v$($_.DriverVersion)) - $($_.AgeYears) anos (instalado em $($_.DriverDate.ToString('yyyy-MM-dd')))"
+            }
+            $driverListText = ($driverList -join "; ")
+            
+            # Gerar apenas UM finding com todos os drivers
+            Add-Finding "Drivers" "Warning" 0.8 \
+                "Drivers desatualizados ($($oldDrivers.Count) encontrados)" \
+                "Drivers com mais de $($MaxAgeDays/30) meses: $driverListText" \
+                "Atualizar drivers para melhorar estabilidade e seguranca. Visite os sites dos fabricantes." 2
+
+            # Adicionar suspects individuais
             foreach ($driver in $oldDrivers) {
-                $severity = "Warning"
                 $penalty = if ($driver.AgeDays -gt 365) { 0.9 } elseif ($driver.AgeDays -gt 180) { 0.75 } else { 0.5 }
-
-                Add-Finding "Drivers" $severity $penalty `
-                    "Driver antigo: $($driver.DisplayName)" `
-                    "Driver '$($driver.DisplayName)' (v$($driver.DriverVersion)) tem $($driver.AgeYears) anos (instalado em $($driver.DriverDate.ToString('yyyy-MM-dd'))). Caminho: $($driver.DriverPath)" `
-                    "Atualizar driver para melhorar estabilidade e seguranca. Visite o site do fabricante." 2
-
                 Add-Suspect "Drivers" $penalty "Driver $($driver.DisplayName) com $($driver.AgeDays) dias"
             }
         } else {
@@ -1487,33 +1494,59 @@ Invoke-Step "Battery" {
         Present = $true; ChargePercent = $Battery.EstimatedChargeRemaining; Status = $Battery.BatteryStatus
         DesignCapacityMWh = $null; FullChargeCapacityMWh = $null; WearPct = $null; CycleCount = $null
     }
+    
+    # Tentar obter dados de desgaste da bateria (root/wmi)
     try {
-        $full = Get-CimInstance -Namespace root/wmi -ClassName BatteryFullChargedCapacity -ErrorAction Stop | Select-Object -First 1
-        $stat = Get-CimInstance -Namespace root/wmi -ClassName BatteryStaticData -ErrorAction Stop | Select-Object -First 1
-        $b.FullChargeCapacityMWh = [int]$full.FullChargedCapacity
-        $b.DesignCapacityMWh = [int]$stat.DesignedCapacity
-        if ($b.DesignCapacityMWh -gt 0) {
-            $b.WearPct = [math]::Max(0, [math]::Round((1 - ($b.FullChargeCapacityMWh / $b.DesignCapacityMWh)) * 100, 1))
-            
-            # Gerar alerta se desgaste for significativo
-            if ($b.WearPct -ge 20) {
-                $healthPct = 100 - $b.WearPct
-                $severity = if ($b.WearPct -ge 40) { "Critical" } elseif ($b.WearPct -ge 30) { "Warning" } else { "Info" }
-                $penalty = if ($b.WearPct -ge 40) { 0.9 } elseif ($b.WearPct -ge 30) { 0.75 } else { 0.5 }
-                
-                Add-Finding "Hardware" $severity $penalty `
-                    "Desgaste da bateria: $($b.WearPct)%" `
-                    "Bateria com $($healthPct)% de saude (desgaste de $($b.WearPct)%). Capacidade atual: $($b.FullChargeCapacityMWh)mWh, Original: $($b.DesignCapacityMWh)mWh." `
-                    "Considerar substituir a bateria. Baterias com mais de 30% de desgaste tem autonomia significativamente reduzida." 2
-                
-                Add-Suspect "Hardware" $penalty "Bateria com desgaste de $($b.WearPct)%"
+        $full = $null
+        $stat = $null
+        
+        # Tentar com CIM
+        try {
+            $full = Get-CimInstance -Namespace root/wmi -ClassName BatteryFullChargedCapacity -ErrorAction Stop | Select-Object -First 1
+            $stat = Get-CimInstance -Namespace root/wmi -ClassName BatteryStaticData -ErrorAction Stop | Select-Object -First 1
+        } catch {
+            # Tentar com WMI
+            try {
+                $full = Get-WmiObject -Namespace root/wmi -Class BatteryFullChargedCapacity -ErrorAction Stop | Select-Object -First 1
+                $stat = Get-WmiObject -Namespace root/wmi -Class BatteryStaticData -ErrorAction Stop | Select-Object -First 1
+            } catch {
+                Write-DiagLog -Message "Nao foi possivel obter dados de desgaste da bateria (root/wmi nao disponivel)" -Level "Debug" -Component "Battery"
             }
         }
+        
+        if ($full -and $stat -and $stat.DesignedCapacity -gt 0) {
+            $b.FullChargeCapacityMWh = [int]$full.FullChargedCapacity
+            $b.DesignCapacityMWh = [int]$stat.DesignedCapacity
+            $b.WearPct = [math]::Max(0, [math]::Round((1 - ($b.FullChargeCapacityMWh / $b.DesignCapacityMWh)) * 100, 1))
+        }
     } catch { }
+    
+    # Gerar alerta se desgaste for significativo
+    if ($b.WearPct -ge 20) {
+        $healthPct = 100 - $b.WearPct
+        $severity = if ($b.WearPct -ge 40) { "Critical" } elseif ($b.WearPct -ge 30) { "Warning" } else { "Info" }
+        $penalty = if ($b.WearPct -ge 40) { 0.9 } elseif ($b.WearPct -ge 30) { 0.75 } else { 0.5 }
+        
+        Add-Finding "Hardware" $severity $penalty \
+            "Desgaste da bateria: $($b.WearPct)%" \
+            "Bateria com $($healthPct)% de saude (desgaste de $($b.WearPct)%). Capacidade atual: $($b.FullChargeCapacityMWh)mWh, Original: $($b.DesignCapacityMWh)mWh." \
+            "Considerar substituir a bateria. Baterias com mais de 30% de desgaste tem autonomia significativamente reduzida." 2
+        
+        Add-Suspect "Hardware" $penalty "Bateria com desgaste de $($b.WearPct)%"
+    }
+    
     try {
-        $cyc = Get-CimInstance -Namespace root/wmi -ClassName BatteryCycleCount -ErrorAction Stop | Select-Object -First 1
-        $b.CycleCount = [int]$cyc.CycleCount
+        $cyc = $null
+        try {
+            $cyc = Get-CimInstance -Namespace root/wmi -ClassName BatteryCycleCount -ErrorAction Stop | Select-Object -First 1
+        } catch {
+            try {
+                $cyc = Get-WmiObject -Namespace root/wmi -ClassName BatteryCycleCount -ErrorAction Stop | Select-Object -First 1
+            } catch { }
+        }
+        if ($cyc) { $b.CycleCount = [int]$cyc.CycleCount }
     } catch { }
+    
     $Report.Facts.Battery = $b
 }
 
