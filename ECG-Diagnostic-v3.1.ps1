@@ -354,9 +354,9 @@ function Show-Step {
     param([string]$Text)
     $script:StepNo++
     if (-not $Silent) {
-        Write-Host " [$($script:StepNo)/$StepTotal] $Text" -ForegroundColor Gray
+        Write-Host " [$($script:StepNo)/${StepTotal}] $Text" -ForegroundColor Gray
     }
-    Write-DiagLog -Message "Step $($script:StepNo)/$StepTotal: $Text" -Level "Info" -Component "Progress"
+    Write-DiagLog -Message "Step $($script:StepNo)/${StepTotal}: $Text" -Level "Info" -Component "Progress"
 }
 
 function Invoke-Step {
@@ -365,19 +365,19 @@ function Invoke-Step {
     if ($RequiresAdmin -and -not $script:IsAdmin) {
         $entry.Status = 'Skipped'; $entry.Error = 'requer admin'
         $script:Coverage.Add([pscustomobject]$entry)
-        Write-DiagLog -Message "Step $Name: Skipped (requer admin)" -Level "Warning" -Component "Step"
+        Write-DiagLog -Message "Step ${Name}: Skipped (requer admin)" -Level "Warning" -Component "Step"
         return $null
     }
     Write-DiagLog -Message "Iniciando step: $Name" -Level "Debug" -Component "Step"
     $sw = [System.Diagnostics.Stopwatch]::StartNew()
     try { 
         & $Block 
-        Write-DiagLog -Message "Step $Name: Concluido com sucesso" -Level "Debug" -Component "Step"
+        Write-DiagLog -Message "Step ${Name}: Concluido com sucesso" -Level "Debug" -Component "Step"
     }
     catch {
         $entry.Status = 'Failed'; $entry.Error = $_.Exception.Message
-        $script:DiagErrors.Add("Step[$Name]: $($_.Exception.Message)")
-        Write-DiagLog -Message "Step $Name: Failed - $($_.Exception.Message)" -Level "Error" -Component "Step"
+        $script:DiagErrors.Add("Step[${Name}]: $($_.Exception.Message)")
+        Write-DiagLog -Message "Step ${Name}: Failed - $($_.Exception.Message)" -Level "Error" -Component "Step"
     }
     $sw.Stop()
     $entry.Seconds = [math]::Round($sw.Elapsed.TotalSeconds, 2)
@@ -405,7 +405,7 @@ function Invoke-TimedStep {
     if ($RequiresAdmin -and -not $script:IsAdmin) {
         $entry.Status = 'Skipped'; $entry.Error = 'requer admin'
         $script:Coverage.Add([pscustomobject]$entry)
-        Write-DiagLog -Message "TimedStep $Name: Skipped (requer admin)" -Level "Warning" -Component "Step"
+        Write-DiagLog -Message "TimedStep ${Name}: Skipped (requer admin)" -Level "Warning" -Component "Step"
         return $null
     }
     
@@ -422,24 +422,24 @@ function Invoke-TimedStep {
             $result = $ps.EndInvoke($handle)
             if ($ps.HadErrors -and @($result).Count -eq 0 -and $ps.Streams.Error.Count -gt 0) {
                 $entry.Status = 'Failed'; $entry.Error = "$($ps.Streams.Error[0])"
-                Write-DiagLog -Message "TimedStep $Name: Failed - $($ps.Streams.Error[0])" -Level "Error" -Component "Step"
+                Write-DiagLog -Message "TimedStep ${Name}: Failed - $($ps.Streams.Error[0])" -Level "Error" -Component "Step"
             }
             $ps.Dispose()
         } else {
             $entry.Status = 'Timeout'; $entry.Error = "excedeu $TimeoutSec s"
-            Write-DiagLog -Message "TimedStep $Name: Timeout apos $TimeoutSec s" -Level "Warning" -Component "Step"
+            Write-DiagLog -Message "TimedStep ${Name}: Timeout apos $TimeoutSec s" -Level "Warning" -Component "Step"
             [void]$ps.BeginStop($null, $null)
         }
     } catch {
         $entry.Status = 'Failed'; $entry.Error = $_.Exception.Message
-        $script:DiagErrors.Add("TimedStep[$Name]: $($entry.Status) $($entry.Error)")
-        Write-DiagLog -Message "TimedStep $Name: Exception - $($_.Exception.Message)" -Level "Error" -Component "Step"
+        $script:DiagErrors.Add("TimedStep[${Name}]: $($entry.Status) $($entry.Error)")
+        Write-DiagLog -Message "TimedStep ${Name}: Exception - $($_.Exception.Message)" -Level "Error" -Component "Step"
     }
     $sw.Stop()
     $entry.Seconds = [math]::Round($sw.Elapsed.TotalSeconds, 2)
     $script:Coverage.Add([pscustomobject]$entry)
     if ($entry.Status -in 'Timeout', 'Failed') { 
-        $script:DiagErrors.Add("TimedStep[$Name]: $($entry.Status) $($entry.Error)")
+        $script:DiagErrors.Add("TimedStep[${Name}]: $($entry.Status) $($entry.Error)")
     }
     return $result
 }
@@ -450,7 +450,7 @@ function Get-EventsSafe {
         Get-WinEvent -FilterHashtable $Filter -MaxEvents $MaxEvents -ErrorAction Stop
     } catch {
         if ($_.FullyQualifiedErrorId -notlike 'NoMatchingEventsFound*') {
-            $script:DiagErrors.Add("EventLog[$Label]: $($_.Exception.Message)")
+            $script:DiagErrors.Add("EventLog[${Label}]: $($_.Exception.Message)")
         }
         @()
     }
@@ -2300,17 +2300,17 @@ Invoke-Step "Rules.Storage" -Internal {
     foreach ($dk in @($F.PhysicalDisks)) {
         $dn = "$($dk.FriendlyName) (disco $($dk.DeviceId))"
         switch ($dk.HealthStatus) {
-            "Unhealthy" { Add-Finding "Storage" "Critical" 0.95 "Disco Reportado como Nao Saudavel" "$dn : Status Unhealthy." "Substituicao imediata." 2; Add-Suspect "Armazenamento" 4 "HealthStatus Unhealthy em $dn" }
-            "Warning"   { Add-Finding "Storage" "Warning" 0.85 "Disco com Aviso de Saude" "$dn : Status Warning." "Verificar SMART." 2; Add-Suspect "Armazenamento" 2.5 "HealthStatus Warning em $dn" }
+            "Unhealthy" { Add-Finding "Storage" "Critical" 0.95 "Disco Reportado como Nao Saudavel" "${dn} : Status Unhealthy." "Substituicao imediata." 2; Add-Suspect "Armazenamento" 4 "HealthStatus Unhealthy em $dn" }
+            "Warning"   { Add-Finding "Storage" "Warning" 0.85 "Disco com Aviso de Saude" "${dn} : Status Warning." "Verificar SMART." 2; Add-Suspect "Armazenamento" 2.5 "HealthStatus Warning em $dn" }
         }
         if ($null -ne $dk.WearPercentage -and $dk.WearPercentage -ge 80) {
             $sev = if ($dk.WearPercentage -ge 90) { "Critical" } else { "Warning" }
-            Add-Finding "Storage" $sev 0.9 "Desgaste de SSD Elevado" "$dn : desgaste $($dk.WearPercentage)%." "Planear substituicao do SSD $dn." 2; Add-Suspect "Armazenamento" 2.5 "Desgaste SSD $($dk.WearPercentage)%"
+            Add-Finding "Storage" $sev 0.9 "Desgaste de SSD Elevado" "${dn} : desgaste $($dk.WearPercentage)%." "Planear substituicao do SSD $dn." 2; Add-Suspect "Armazenamento" 2.5 "Desgaste SSD $($dk.WearPercentage)%"
         }
         $un = 0
         if ($null -ne $dk.ReadErrorsUncorrected)  { $un += [int64]$dk.ReadErrorsUncorrected }
         if ($null -ne $dk.WriteErrorsUncorrected) { $un += [int64]$dk.WriteErrorsUncorrected }
-        if ($un -gt 0) { Add-Finding "Storage" "Warning" 0.75 "Erros de I/O Nao Corrigidos no Disco" "$dn : $un erros acumulados." "Garantir backup." 2; Add-Suspect "Armazenamento" 2 "Erros nao corrigidos em $dn" }
+        if ($un -gt 0) { Add-Finding "Storage" "Warning" 0.75 "Erros de I/O Nao Corrigidos no Disco" "${dn} : $un erros acumulados." "Garantir backup." 2; Add-Suspect "Armazenamento" 2 "Erros nao corrigidos em $dn" }
     }
     $sp = $F.SmartPredictFailure
     if ($sp -and $sp.Count -gt 0) {
