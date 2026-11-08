@@ -710,7 +710,17 @@ function Test-DriverDates {
     Write-DiagLog -Message "Verificando drivers antigos (limite: $MaxAgeDays dias)" -Level "Info" -Component "Drivers"
 
     try {
-        $drivers = Get-CimInstance -ClassName Win32_Driver -ErrorAction Stop
+        $drivers = $null
+        try {
+            $drivers = Get-CimInstance -ClassName Win32_Driver -ErrorAction Stop
+        } catch {
+            try {
+                $drivers = Get-WmiObject -Class Win32_Driver -ErrorAction Stop
+            } catch {
+                throw "Nao foi possivel obter lista de drivers: $_"
+            }
+        }
+        
         $oldDrivers = @()
         $now = Get-Date
 
@@ -755,7 +765,7 @@ function Test-DriverDates {
 
     } catch {
         Write-DiagLog -Message "Erro ao verificar drivers: $($_.Exception.Message)" -Level "Error" -Component "Drivers"
-        Add-Finding "Drivers" "Error" 0.5 "Falha na verificacao de drivers" `
+        Add-Finding "Drivers" "Critical" 0.5 "Falha na verificacao de drivers" `
             "Nao foi possivel verificar as datas dos drivers: $($_.Exception.Message)" `
             "Verifique permissoes de administrador e servico WMI" 2
         return $null
