@@ -1,0 +1,136 @@
+﻿==================================================================
+RELATORIO CLINICO DE TRIAGEM (ECG v2.3)
+Computador : PEDRO-PORTATIL
+Data/Hora  : 2026-11-06 22:03:26
+Queixa     : lento
+Perfis     : Performance
+Admin      : True | Extended: True
+Duracao    : 50.45 segundos
+Schema     : v2.3
+==================================================================
+
+SCORES DE SAUDE PONDERADOS (heuristicos):
+- Global   : 48/100
+- Hardware : 91/100
+- Storage  : 66/100
+- Memoria  : 100/100
+- Windows  : 54/100
+- Rede     : 100/100
+Cobertura de dados: 0% (confianca Baixa)
+
+SUSPEITO PRINCIPAL: (nenhum acima do limiar)
+- Seguranca/Malware (2 pts): Sem antivirus ativo
+- Arrefecimento (2 pts): Eventos de throttling (2)
+- Armazenamento (1.5 pts): Erros NTFS/volmgr
+- Sistema Windows (integridade) (1 pts): Falhas do Windows Update
+- Drivers (1 pts): Drivers nao assinados
+
+FINDINGS (20):
+[Critical] (Storage) Volume E: em Esgotamento Critico *
+  Evidencia: Apenas 0.7 GB disponiveis (17.3% livres).
+  Acao     : Libertar espaco no volume E: de imediato.
+
+[Critical] (Windows) Sem Antivirus Ativo
+  Evidencia: Defender sem protecao em tempo real e nenhum antivirus de terceiros ativo.
+  Acao     : Ativar o Microsoft Defender ou o antivirus instalado.
+
+[Warning] (Storage) Erros Logicos no Sistema de Ficheiros (NTFS/volmgr) *
+  Evidencia: Eventos: Ntfs|50 x3 (delayed write falhou).
+  Acao     : Agendar chkdsk no volume correspondente para verificar metadados NTFS.
+
+[Warning] (Hardware) CPU Limitado pelo Firmware (Throttling) *
+  Evidencia: 2 evento(s) Kernel-Processor-Power 37 nos ultimos 3 dias.
+  Acao     : Verificar temperaturas, limpeza/pasta termica, plano de energia e atualizacao de BIOS.
+
+[Warning] (Storage) Volume C: com Espaco Reduzido *
+  Evidencia: Volume com 12.1% de espaco livre (72.7 GB).
+  Acao     : Executar limpeza de disco (cleanmgr) e remover ficheiros temporarios.
+
+[Warning] (Windows) Falhas do Windows Update
+  Evidencia: 3 evento(s) de falha (IDs 20/25/31) nos ultimos 30 dias.
+  Acao     : Executar o Resolucao de Problemas do Windows Update; reparar com DISM/SFC; limpar SoftwareDistribution.
+
+[Warning] (Windows) Versao do Windows Fora de Suporte
+  Evidencia: Windows 10 (Home/Pro): suporte terminou em 2025-10-14 (tabela interna; validar na Microsoft; Windows 10 pode ter ESU).
+  Acao     : Atualizar para uma versao suportada (ou ativar ESU).
+
+[Warning] (Windows) Componente que Degrada o Arranque
+  Evidencia: 101|MsMpEng.exe degradou o arranque 3 vezes.
+  Acao     : Atualizar, reconfigurar ou remover do arranque o componente indicado.
+
+[Warning] (Windows) Firewall do Windows Desativada (Private)
+  Evidencia: Perfil Private com a firewall desligada (pode haver firewall de terceiros).
+  Acao     : Ativar a firewall do Windows ou confirmar a firewall de terceiros.
+
+[Warning] (Windows) Firewall do Windows Desativada (Domain)
+  Evidencia: Perfil Domain com a firewall desligada (pode haver firewall de terceiros).
+  Acao     : Ativar a firewall do Windows ou confirmar a firewall de terceiros.
+
+[Warning] (Windows) Drivers Nao Assinados
+  Evidencia: 1 driver(s): Virtual USB MultiKey.
+  Acao     : Substituir por drivers assinados do fabricante.
+
+[Warning] (Windows) Falhas Recorrentes de Servicos (SCM)
+  Evidencia: 7009|CxUIUSvc x2; 7000|DFWSIDService x2; 7000|CxUIUSvc x2; 7000|Serviço Google Update (gupdate) x2; 7009|Serviço Google Update (gupdate) x2
+  Acao     : Investigar os servicos indicados (IDs 7031/7034 = crash; 7000/7001/7009 = falha de arranque/timeout).
+
+[Info] (Hardware) Driver Grafico Antigo *
+  Evidencia: Intel(R) UHD Graphics 620: driver de 2020-09-05 (~6 anos).
+  Acao     : Atualizar o driver grafico.
+
+[Info] (Memory) RAM Abaixo da Velocidade Nominal (XMP/EXPO?) *
+  Evidencia: A velocidade configurada e inferior a 90% da nominal dos modulos.
+  Acao     : Ativar XMP/EXPO na BIOS se o equipamento o suportar.
+
+[Info] (Windows) Cobertura de Dados Baixa (0%)
+  Evidencia: 0 passo(s) ignorado(s), 0 com falha, 0 com timeout. O score pode estar otimista.
+  Acao     : Executar como administrador e rever Facts.CollectionErrors / DataCoverage no JSON.
+
+[Info] (Windows) Secure Boot Desativado
+  Evidencia: Secure Boot esta desligado.
+  Acao     : Ativar na BIOS/UEFI se o sistema o suportar.
+
+[Info] (Windows) Portatil sem BitLocker no Disco do Sistema
+  Evidencia: Volume C: sem protecao BitLocker.
+  Acao     : Considerar ativar BitLocker/encriptacao de dispositivo (guardar a chave de recuperacao).
+
+[Info] (Windows) Drivers Criticos Antigos (> 4 anos)
+  Evidencia: Microsoft Kernel Debug Network Adapter (2006-06-21); Bluetooth Device (RFCOMM Protocol TDI) (2006-06-21); Microsoft Wi-Fi Direct Virtual Adapter (2006-06-21); Microsoft Storage Spaces Controller (2006-06-21)
+  Acao     : Atualizar drivers de grafica, rede, storage, Bluetooth e audio.
+
+[Info] (Windows) Arranque Moderadamente Lento
+  Evidencia: Media de 94.3 s.
+  Acao     : Rever itens de arranque.
+
+[Info] (Windows) Itens de Arranque com Ficheiro em Falta
+  Evidencia: Ollama
+  Acao     : Remover entradas de arranque orfas (Autoruns).
+
+TENDENCIA:
+(sem analise anterior para comparar)
+
+PLANO DE ACAO RECOMENDADO:
+- Ativar XMP/EXPO na BIOS se o equipamento o suportar.
+- Verificar temperaturas, limpeza/pasta termica, plano de energia e atualizacao de BIOS.
+- Atualizar o driver grafico.
+- Libertar espaco no volume E: de imediato.
+- Executar limpeza de disco (cleanmgr) e remover ficheiros temporarios.
+- Agendar chkdsk no volume correspondente para verificar metadados NTFS.
+- Investigar os servicos indicados (IDs 7031/7034 = crash; 7000/7001/7009 = falha de arranque/timeout).
+- Substituir por drivers assinados do fabricante.
+- Atualizar drivers de grafica, rede, storage, Bluetooth e audio.
+- Rever itens de arranque.
+- Atualizar, reconfigurar ou remover do arranque o componente indicado.
+- Remover entradas de arranque orfas (Autoruns).
+- Executar o Resolucao de Problemas do Windows Update; reparar com DISM/SFC; limpar SoftwareDistribution.
+- Atualizar para uma versao suportada (ou ativar ESU).
+- Ativar o Microsoft Defender ou o antivirus instalado.
+- Ativar a firewall do Windows ou confirmar a firewall de terceiros.
+- Considerar ativar BitLocker/encriptacao de dispositivo (guardar a chave de recuperacao).
+- Ativar na BIOS/UEFI se o sistema o suportar.
+- Executar como administrador e rever Facts.CollectionErrors / DataCoverage no JSON.
+
+AVISOS DE RECOLHA:
+- EventLog[PhysicalStorage]: There is not an event provider on the localhost computer that matches "iaStorA".
+- Step[Rules.Performance]: Os tipos de argumentos não correspondem
+==================================================================
